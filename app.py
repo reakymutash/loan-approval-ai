@@ -17,13 +17,23 @@ commercial_assets = st.number_input("Commercial Assets Value", min_value=0, valu
 
 
 if st.button("Analyze Application"):
-    # We package the inputs into a Pandas dataframe exactly like the one the AI studied
-    # Note: For this MVP, we are only passing the top features the Decision Tree actually used
+   
     input_data = pd.DataFrame({
-        'cibil_score': [cibil_score],
-        'calculated_dti': [calculated_dti],
-        'loan_term': [loan_term],
-        'commercial_assets_value': [commercial_assets]
+        'no_of_dependents': [0],
+        'education': [1], 
+        'self_employed': [0], 
+        'income_annum': [5000000],
+        'loan_amount': [1000000],
+        'loan_term': [loan_term],                   
+        'cibil_score': [cibil_score],              
+        'residential_assets_value': [0],
+        'commercial_assets_value': [commercial_assets], 
+        'luxury_assets_value': [0],
+        'bank_asset_value': [0],
+        'total_assets': [commercial_assets], 
+        'monthly_income': [5000000 / 12],
+        'monthly_payment': [1000000 / (loan_term * 12)],
+        'calculated_dti': [calculated_dti]          
     })
     
    
