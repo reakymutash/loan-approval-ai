@@ -41,7 +41,7 @@ with st.sidebar:
 
 # The Bouncer: If not logged in, stop the entire script right here
 if not st.session_state['logged_in']:
-    st.warning("⚠️ You must log in via the sidebar to access the underwriting AI.")
+    st.warning(":material/warning: You must log in via the sidebar to access the underwriting AI.")
     st.stop() # This prevents the rest of the app below from loading!
 
 st.title(":material/account_balance: FinTech Loan Underwriting AI")
