@@ -85,7 +85,7 @@ if st.button("Run AI Risk Assessment"):
     default_risk = prediction_probs[1] * 100  # Percentage chance of rejection/default
     
     st.markdown("---")
-    st.markdown("## 🤖 AI Risk Assessment Report")
+    st.markdown("## :material/robot_2: Risk Assessment Report")
     
     # 3. DISPLAY THE RISK SCORE
     if default_risk > 50:
