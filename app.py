@@ -96,7 +96,7 @@ if st.button("Run AI Risk Assessment"):
         st.success(f":material/check: **Low Risk:** The AI estimates only a {default_risk:.1f}% chance of default.")
 
     # 4. EXPLAINABILITY: HIGHLIGHT THE RED FLAGS
-    st.markdown("### ⛔ Key Factors to Review:")
+    st.markdown("### :material/warning: Key Factors to Review:")
     red_flags = 0
     
     if cibil_score <= 550:
