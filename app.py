@@ -2,18 +2,21 @@ import streamlit as st
 import pandas as pd
 import joblib
 
+st.set_page_config(page_title="FinTech AI", page_icon="🏦", layout="wide")
 
 model = joblib.load('loan_model.pkl')
 
+col1, col2 = st.columns(2)
 
-st.title(" FinTech Loan Underwriting AI")
-st.write("Enter the applicant's financial details below to predict loan approval.")
+with col1:
+    cibil_score = st.number_input("CIBIL Credit Score", min_value=300, max_value=900, value=600)
+    loan_term = st.number_input("Loan Term (Years)", min_value=1, max_value=30, value=5)
 
+with col2:
+    calculated_dti = st.number_input("Debt-to-Income Ratio (DTI)", min_value=0.0, max_value=2.0, value=0.35)
+    commercial_assets = st.number_input("Commercial Assets Value", min_value=0, value=100000)
 
-cibil_score = st.number_input("CIBIL Credit Score", min_value=300, max_value=900, value=600)
-calculated_dti = st.number_input("Debt-to-Income Ratio (DTI)", min_value=0.0, max_value=2.0, value=0.35)
-loan_term = st.number_input("Loan Term (Years)", min_value=1, max_value=30, value=5)
-commercial_assets = st.number_input("Commercial Assets Value", min_value=0, value=100000)
+st.markdown("---")
 
 
 if st.button("Analyze Application"):
