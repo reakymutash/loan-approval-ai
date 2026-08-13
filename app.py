@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-st.set_page_config(page_title="FinTech AI", page_icon="🏦", layout="wide")
+st.set_page_config(page_title="FinTech AI", page_icon=":material/source_environment:", layout="wide")
 
 model = joblib.load('loan_model.pkl')
 
@@ -44,7 +44,7 @@ if not st.session_state['logged_in']:
     st.warning("⚠️ You must log in via the sidebar to access the underwriting AI.")
     st.stop() # This prevents the rest of the app below from loading!
 
-st.title("🏦 FinTech Loan Underwriting AI")
+st.title(":material/account_balance: FinTech Loan Underwriting AI")
 st.markdown("**Enter the applicant's financial details below to predict loan approval.**")
 
 col1, col2 = st.columns(2)
@@ -89,14 +89,14 @@ if st.button("Run AI Risk Assessment"):
     
     # 3. DISPLAY THE RISK SCORE
     if default_risk > 50:
-        st.warning(f"⚠️ **High Risk Detected:** The AI estimates a {default_risk:.1f}% chance of this applicant defaulting.")
+        st.warning(f":material/warning: **High Risk Detected:** The AI estimates a {default_risk:.1f}% chance of this applicant defaulting.")
     elif default_risk > 20:
-        st.info(f"🟡 **Moderate Risk:** The AI estimates a {default_risk:.1f}% chance of default.")
+        st.info(f":material/info: **Moderate Risk:** The AI estimates a {default_risk:.1f}% chance of default.")
     else:
-        st.success(f"✅ **Low Risk:** The AI estimates only a {default_risk:.1f}% chance of default.")
+        st.success(f":material/check: **Low Risk:** The AI estimates only a {default_risk:.1f}% chance of default.")
 
     # 4. EXPLAINABILITY: HIGHLIGHT THE RED FLAGS
-    st.markdown("### 🚩 Key Factors to Review:")
+    st.markdown("###:material/bookmark_flag: Key Factors to Review:")
     red_flags = 0
     
     if cibil_score <= 550:
@@ -114,15 +114,15 @@ if st.button("Run AI Risk Assessment"):
 
     # 5. HUMAN OVERSIGHT: THE FINAL SAY
     st.markdown("---")
-    st.markdown("## 🧑‍💼 Underwriter Decision")
+    st.markdown("## :material/person: Underwriter Decision")
     st.write("Review the AI assessment above. You hold the final authority on this application.")
     
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("✅ Officially Approve Loan", use_container_width=True):
+        if st.button(":material/check: Officially Approve Loan", use_container_width=True):
             st.success("Action Logged: Loan manually approved by underwriter.")
     with col2:
-        if st.button("❌ Officially Reject Loan", use_container_width=True):
+        if st.button(":material/close: Officially Reject Loan", use_container_width=True):
             st.error("Action Logged: Loan manually rejected by underwriter.")
 
 
@@ -131,10 +131,10 @@ if st.button("Run AI Risk Assessment"):
 # 2. PRIVACY: DATA MINIMIZATION & WIPE
 # ==========================================
 st.markdown("---")
-st.markdown("### 🛡️ Data Privacy Controls")
+st.markdown("### :material/lock: Data Privacy Controls")
 st.write("Ensure customer PII is wiped from the terminal memory after processing.")
 
-if st.button("🗑️ Wipe Applicant Data & Reset Terminal"):
+if st.button(":material/delete: Wipe Applicant Data & Reset Terminal"):
     # We clear the cache to dump all entered numbers
     st.session_state.clear()
     
