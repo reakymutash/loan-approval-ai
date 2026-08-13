@@ -22,17 +22,34 @@ with col2:
 st.markdown("---")
 
 if st.button("Run AI Risk Assessment"):
-    # (Keep your input_data DataFrame exactly the same here)
     
-    # 1. THE AI ASSESSES THE RISK (Returns a percentage instead of a 1 or 0)
-    # predict_proba returns an array like [[chance_of_0, chance_of_1]]
+    # 1. BUILD THE DATAFRAME FIRST
+    input_data = pd.DataFrame({
+        'no_of_dependents': [0],
+        'education': [1], 
+        'self_employed': [0], 
+        'income_annum': [5000000],
+        'loan_amount': [1000000],
+        'loan_term': [loan_term],                   
+        'cibil_score': [cibil_score],               
+        'residential_assets_value': [0],
+        'commercial_assets_value': [commercial_assets], 
+        'luxury_assets_value': [0],
+        'bank_asset_value': [0],
+        'total_assets': [commercial_assets], 
+        'monthly_income': [5000000 / 12],
+        'monthly_payment': [1000000 / (loan_term * 12)],
+        'calculated_dti': [calculated_dti]          
+    })
+    
+    # 2. THEN THE AI ASSESSES THE RISK
     prediction_probs = model.predict_proba(input_data)[0]
     default_risk = prediction_probs[1] * 100  # Percentage chance of rejection/default
     
     st.markdown("---")
     st.markdown("## 🤖 AI Risk Assessment Report")
     
-    # 2. DISPLAY THE RISK SCORE
+    # 3. DISPLAY THE RISK SCORE
     if default_risk > 50:
         st.warning(f"⚠️ **High Risk Detected:** The AI estimates a {default_risk:.1f}% chance of this applicant defaulting.")
     elif default_risk > 20:
@@ -40,7 +57,7 @@ if st.button("Run AI Risk Assessment"):
     else:
         st.success(f"✅ **Low Risk:** The AI estimates only a {default_risk:.1f}% chance of default.")
 
-    # 3. EXPLAINABILITY: HIGHLIGHT THE RED FLAGS
+    # 4. EXPLAINABILITY: HIGHLIGHT THE RED FLAGS
     st.markdown("### 🚩 Key Factors to Review:")
     red_flags = 0
     
@@ -57,14 +74,13 @@ if st.button("Run AI Risk Assessment"):
     if red_flags == 0:
         st.write("No major anomalies detected in the primary financial metrics.")
 
-    # 4. HUMAN OVERSIGHT: THE FINAL SAY
+    # 5. HUMAN OVERSIGHT: THE FINAL SAY
     st.markdown("---")
     st.markdown("## 🧑‍💼 Underwriter Decision")
     st.write("Review the AI assessment above. You hold the final authority on this application.")
     
     col1, col2 = st.columns(2)
     with col1:
-        # We use a checkbox or button to simulate the final human action
         if st.button("✅ Officially Approve Loan", use_container_width=True):
             st.success("Action Logged: Loan manually approved by underwriter.")
     with col2:
