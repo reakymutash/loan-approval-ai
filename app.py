@@ -6,43 +6,36 @@ st.set_page_config(page_title="FinTech AI", page_icon=":material/source_environm
 
 model = joblib.load('loan_model.pkl')
 
-
-# ==========================================
-# 1. SECURITY: MOCK AUTHENTICATION SYSTEM
-# ==========================================
-# Check if the user is already logged in during this session
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
 
-# Draw the login panel in the sidebar
+
 with st.sidebar:
     st.title(":material/lock: Secure Portal")
-    
-    # If they are NOT logged in, show the login form
+   
     if not st.session_state['logged_in']:
         st.write("Authorized Personnel Only")
         username = st.text_input("Underwriter ID")
         password = st.text_input("Password", type="password")
         
         if st.button("Log In"):
-            # Mock validation (In the real world, this connects to a database)
+            
             if username == "admin" and password == "1234":
                 st.session_state['logged_in'] = True
-                st.rerun() # Refresh the app to clear the login screen
+                st.rerun() 
             else:
                 st.error("Invalid credentials. Access denied.")
                 
-    # If they ARE logged in, show their profile and a logout button
+   
     else:
         st.success("Authenticated as: Senior Underwriter")
         if st.button("Secure Logout"):
-            st.session_state.clear() # Wipes the entire memory
+            st.session_state.clear() 
             st.rerun()
 
-# The Bouncer: If not logged in, stop the entire script right here
 if not st.session_state['logged_in']:
     st.warning(":material/warning: You must log in via the sidebar to access the underwriting AI.")
-    st.stop() # This prevents the rest of the app below from loading!
+    st.stop() 
 
 st.title(":material/account_balance: FinTech Loan Underwriting Model")
 st.markdown("**Enter the applicant's financial details below to predict loan approval.**")
@@ -61,7 +54,6 @@ st.markdown("---")
 
 if st.button("Run Risk Assessment"):
     
-    # 1. BUILD THE DATAFRAME FIRST
     input_data = pd.DataFrame({
         'no_of_dependents': [0],
         'education': [1], 
@@ -80,14 +72,14 @@ if st.button("Run Risk Assessment"):
         'calculated_dti': [calculated_dti]          
     })
     
-    # 2. THEN THE AI ASSESSES THE RISK
+   
     prediction_probs = model.predict_proba(input_data)[0]
-    default_risk = prediction_probs[1] * 100  # Percentage chance of rejection/default
+    default_risk = prediction_probs[1] * 100  
     
     st.markdown("---")
     st.markdown("## :material/robot_2: Risk Assessment Report")
     
-    # 3. DISPLAY THE RISK SCORE
+    
     if default_risk > 50:
         st.warning(f":material/warning: **High Risk Detected:** The AI estimates a {default_risk:.1f}% chance of this applicant defaulting.")
     elif default_risk > 20:
@@ -95,7 +87,7 @@ if st.button("Run Risk Assessment"):
     else:
         st.success(f":material/check: **Low Risk:** The AI estimates only a {default_risk:.1f}% chance of default.")
 
-    # 4. EXPLAINABILITY: HIGHLIGHT THE RED FLAGS
+   
     st.markdown("### :material/warning: Key Factors to Review:")
     red_flags = 0
     
@@ -112,7 +104,6 @@ if st.button("Run Risk Assessment"):
     if red_flags == 0:
         st.write("No major anomalies detected in the primary financial metrics.")
 
-    # 5. HUMAN OVERSIGHT: THE FINAL SAY
     st.markdown("---")
     st.markdown("## :material/person: Underwriter Decision")
     st.write("Review the assessment above. You hold the final authority on this application.")
@@ -125,21 +116,11 @@ if st.button("Run Risk Assessment"):
         if st.button(":material/close: Officially Reject Loan", use_container_width=True):
             st.error("Action Logged: Loan manually rejected by underwriter.")
 
-
-
-            # ==========================================
-# 2. PRIVACY: DATA MINIMIZATION & WIPE
-# ==========================================
 st.markdown("---")
 st.markdown("### :material/lock: Data Privacy Controls")
 st.write("Ensure customer PII is wiped from the terminal memory after processing.")
 
 if st.button(":material/delete: Wipe Applicant Data & Reset Terminal"):
-    # We clear the cache to dump all entered numbers
     st.session_state.clear()
-    
-    # But we keep the user logged in so they don't have to re-type their password
     st.session_state['logged_in'] = True 
-    
-    # Rerun the app instantly to blank out the screen
     st.rerun()
