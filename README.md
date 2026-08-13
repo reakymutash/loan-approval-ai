@@ -1,7 +1,20 @@
-
 # 🏦 FinTech Loan Underwriting AI
 
 A machine learning-powered decision-support dashboard built for loan officers and underwriters. This application assesses the risk of loan default using a Decision Tree classifier while prioritizing human oversight, explainability, and data privacy.
+
+---
+
+## 🚀 Live Demo
+
+You can test the live application here:
+👉 [https://loan-approval-ai-gyh5zmx2wpy5nswbjetxbw.streamlit.app/](https://loan-approval-ai-gyh5zmx2wpy5nswbjetxbw.streamlit.app/)
+
+### 🔑 Test Login Credentials
+
+To bypass the security gateway on the live app, use the following credentials in the sidebar:
+
+* **Underwriter ID:** `admin`
+* **Password:** `1234`
 
 ---
 
@@ -26,13 +39,14 @@ This project was engineered with responsible AI practices in mind:
 
 ---
 
-## 🚀 How to Run Locally
+## ⚙️ Complete Setup & Installation Steps
 
-If you want to run this application on your local machine, follow these steps:
+If you want to run this application locally from scratch, follow every step below:
 
-**1. Clone the repository:**
+### 1. Prerequisites
+
+Ensure you have Python installed on your machine. You can verify by running:
 
 ```bash
-git clone [https://github.com/reakymutash/loan-approval-ai.git](https://github.com/reakymutash/loan-approval-ai.git)
-cd loan-approval-ai
+python --version
 ```
