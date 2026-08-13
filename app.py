@@ -6,6 +6,44 @@ st.set_page_config(page_title="FinTech AI", page_icon="🏦", layout="wide")
 
 model = joblib.load('loan_model.pkl')
 
+
+# ==========================================
+# 1. SECURITY: MOCK AUTHENTICATION SYSTEM
+# ==========================================
+# Check if the user is already logged in during this session
+if 'logged_in' not in st.session_state:
+    st.session_state['logged_in'] = False
+
+# Draw the login panel in the sidebar
+with st.sidebar:
+    st.title("🔒 Secure Portal")
+    
+    # If they are NOT logged in, show the login form
+    if not st.session_state['logged_in']:
+        st.write("Authorized Personnel Only")
+        username = st.text_input("Underwriter ID")
+        password = st.text_input("Password", type="password")
+        
+        if st.button("Log In"):
+            # Mock validation (In the real world, this connects to a database)
+            if username == "admin" and password == "1234":
+                st.session_state['logged_in'] = True
+                st.rerun() # Refresh the app to clear the login screen
+            else:
+                st.error("Invalid credentials. Access denied.")
+                
+    # If they ARE logged in, show their profile and a logout button
+    else:
+        st.success("Authenticated as: Senior Underwriter")
+        if st.button("Secure Logout"):
+            st.session_state.clear() # Wipes the entire memory
+            st.rerun()
+
+# The Bouncer: If not logged in, stop the entire script right here
+if not st.session_state['logged_in']:
+    st.warning("⚠️ You must log in via the sidebar to access the underwriting AI.")
+    st.stop() # This prevents the rest of the app below from loading!
+
 st.title("🏦 FinTech Loan Underwriting AI")
 st.markdown("**Enter the applicant's financial details below to predict loan approval.**")
 
@@ -86,3 +124,22 @@ if st.button("Run AI Risk Assessment"):
     with col2:
         if st.button("❌ Officially Reject Loan", use_container_width=True):
             st.error("Action Logged: Loan manually rejected by underwriter.")
+
+
+
+            # ==========================================
+# 2. PRIVACY: DATA MINIMIZATION & WIPE
+# ==========================================
+st.markdown("---")
+st.markdown("### 🛡️ Data Privacy Controls")
+st.write("Ensure customer PII is wiped from the terminal memory after processing.")
+
+if st.button("🗑️ Wipe Applicant Data & Reset Terminal"):
+    # We clear the cache to dump all entered numbers
+    st.session_state.clear()
+    
+    # But we keep the user logged in so they don't have to re-type their password
+    st.session_state['logged_in'] = True 
+    
+    # Rerun the app instantly to blank out the screen
+    st.rerun()
