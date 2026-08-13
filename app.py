@@ -44,7 +44,7 @@ if not st.session_state['logged_in']:
     st.warning(":material/warning: You must log in via the sidebar to access the underwriting AI.")
     st.stop() # This prevents the rest of the app below from loading!
 
-st.title(":material/account_balance: FinTech Loan Underwriting AI")
+st.title(":material/account_balance: FinTech Loan Underwriting Model")
 st.markdown("**Enter the applicant's financial details below to predict loan approval.**")
 
 col1, col2 = st.columns(2)
@@ -59,7 +59,7 @@ with col2:
 
 st.markdown("---")
 
-if st.button("Run AI Risk Assessment"):
+if st.button("Run Risk Assessment"):
     
     # 1. BUILD THE DATAFRAME FIRST
     input_data = pd.DataFrame({
@@ -115,7 +115,7 @@ if st.button("Run AI Risk Assessment"):
     # 5. HUMAN OVERSIGHT: THE FINAL SAY
     st.markdown("---")
     st.markdown("## :material/person: Underwriter Decision")
-    st.write("Review the AI assessment above. You hold the final authority on this application.")
+    st.write("Review the assessment above. You hold the final authority on this application.")
     
     col1, col2 = st.columns(2)
     with col1:
