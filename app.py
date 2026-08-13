@@ -7,7 +7,7 @@ st.set_page_config(page_title="FinTech AI", page_icon="🏦", layout="wide")
 model = joblib.load('loan_model.pkl')
 
 st.title("🏦 FinTech Loan Underwriting AI")
-st.markdown("Enter the applicant's financial details below to predict loan approval.")
+st.markdown("**Enter the applicant's financial details below to predict loan approval.**")
 
 col1, col2 = st.columns(2)
 
