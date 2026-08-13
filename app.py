@@ -16,7 +16,7 @@ if 'logged_in' not in st.session_state:
 
 # Draw the login panel in the sidebar
 with st.sidebar:
-    st.title("🔒 Secure Portal")
+    st.title(":material/lock: Secure Portal")
     
     # If they are NOT logged in, show the login form
     if not st.session_state['logged_in']:
