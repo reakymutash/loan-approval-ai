@@ -1,15 +1,15 @@
-# 🏦 FinTech Loan Underwriting AI
+#  FinTech Loan Underwriting AI
 
 A machine learning-powered decision-support dashboard built for loan officers and underwriters. This application assesses the risk of loan default using a Decision Tree classifier while prioritizing human oversight, explainability, and data privacy.
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
 You can test the live application here:
-👉 [https://loan-approval-ai-gyh5zmx2wpy5nswbjetxbw.streamlit.app/](https://loan-approval-ai-gyh5zmx2wpy5nswbjetxbw.streamlit.app/)
+ [https://loan-approval-ai-gyh5zmx2wpy5nswbjetxbw.streamlit.app/](https://loan-approval-ai-gyh5zmx2wpy5nswbjetxbw.streamlit.app/)
 
-### 🔑 Test Login Credentials
+###  Test Login Credentials
 
 To bypass the security gateway on the live app, use the following credentials in the sidebar:
 
@@ -18,7 +18,7 @@ To bypass the security gateway on the live app, use the following credentials in
 
 ---
 
-## 🌟 Core Pillars of this Application
+##  Core Pillars of this Application
 
 This project was engineered with responsible AI practices in mind:
 
@@ -29,7 +29,7 @@ This project was engineered with responsible AI practices in mind:
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * **Frontend Interface:** [Streamlit](https://streamlit.io/)
 * **Machine Learning:** Scikit-Learn (Decision Tree Classifier)
@@ -43,10 +43,4 @@ This project was engineered with responsible AI practices in mind:
 
 If you want to run this application locally from scratch, follow every step below:
 
-### 1. Prerequisites
 
-Ensure you have Python installed on your machine. You can verify by running:
-
-```bash
-python --version
-```
