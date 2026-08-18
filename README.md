@@ -39,8 +39,4 @@ This project was engineered with responsible AI practices in mind:
 
 ---
 
-## ⚙️ Complete Setup & Installation Steps
-
-If you want to run this application locally from scratch, follow every step below:
-
 
